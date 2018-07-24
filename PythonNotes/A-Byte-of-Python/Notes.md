@@ -352,3 +352,50 @@ pass 语句在 Python 中表示一个空的语句块。
 
 [使用 sys 模块](code/using_sys.py 'using_sys.py')
 
+使用 Python 命令运行程序时，后面跟着的内容被作为参数传递给程序，Python 为我们把它们存储在字符串列表变量 sys.argv 中
+
+### 字节编译的 .pyc 文件
+
+字节编译的文件与Python变换程序的中间状态有关，字节编译的文件也是与平台无关的
+
+### from..import 语句
+
+如果想在程序中直接输入 argv 而省略 sys. 可以使用 `from sys import argv` 语句
+如果想输入所有 sys 模块使用的名字,可以使用 `from sys import *` 语句
+一般应该避免使用 from..import 而使用 import 语句，以使你的程序更加易读，也可以避免名称的冲突
+
+### 模块的 `__name__`
+
+[使用模块的 __name__](code/using_name.py)
+每个 Python 模块都有它的__name__，如果它是`'__main__'`，这说明这个模块被用户单独运行
+
+### 制造自己的模块
+
+[mymodule.py](code/mymodule.py)
+[demo1](code/mymodule_demo.py) [demo2](code/mymodule_demo2.py)
+
+### dir() 函数 del 语句
+
+使用内建的 dir 函数来列出模块定义的标识符（包括函数、类和变量）
+del 语句用来 **删除** 一个变量/名称
+
+## 数据结构
+
+### 列表
+
+list 是处理一组有序项目的数据结构，是 **可变的** 数据结构，而字符串是不可变的
+列表中的项目应该包括在方括号中，用逗号隔开，且项目数据类型可以不同
+[使用列表](code/using_list.py 'using_list.py')
+用到的方法有 `len(list)` `list.append(item)` `list.sort()` `list[index]`
+
+* 技巧：在 print 语句结尾使用一个 **逗号** 来消除每个 print 语句自动打印的换行符
+
+### 元组
+
+tuple 和列表相类似，但是 **不可变的**，通过圆括号中用逗号分割项目
+[使用元组](code/using_tuple.py 'using_tuple.py')
+元组也可以通过 len 函数获取长度，说明它也是一个 **序列**
+
+**含有0个或1个项目的元组**：空的元组由一对空的圆括号组成，只有一个元素的元组需要在项目后跟一个 逗号 以区分元组和表达式中带圆括号的对象
+
+print 语句可以使用跟着%符号的项目元组的字符串，这些字符串具备定制的功能，让输出满足某种特定的格式，元组必须按照相同的顺序来对应这些定制。
