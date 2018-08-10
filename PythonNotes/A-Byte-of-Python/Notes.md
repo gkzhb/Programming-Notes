@@ -1,6 +1,7 @@
 # Python 教程
 
 [TOC]
+
 来自 [GitHub PythonShare](https://github.com/Yixiaohan/codeparkshare) 中的 [简明 Python 教程](https://woodpecker.org.cn/abyteofpython_cn/chinese/)
 
 ## Python 自带帮助文档
@@ -607,3 +608,132 @@ linesep 字符串|当前平台使用的行终止符 Win-'\r\n' Linux-'\n' Mac-'\
 path.split( )|返回一个路径的目录名和文件名 (元组)
 path.isfile( ) path.isdir( )|分别检验给出的路径是一个文件还是目录
 path.existe( )|检验给出的路径是真得存在
+
+## 第15章 更多 Python 的内容
+
+### 特殊的方法
+
+详见《Python参考手册》
+名称|说明
+:-:|-
+`__init__(self,...)`|这个方法在新建对象恰好要被返回使用之前被调用
+`__del__(self)`|恰好在对象要被删除之前调用
+`__str__(self)`|在我们对对象使用print语句或是使用str()的时候调用
+`__lt__(self,other)`|当使用 小于 运算符（<）的时候调用。类似地，对于所有的运算符（+，>等等）都有特殊的方法
+`__getitem__(self,key)`|使用x[key]索引操作符的时候调用
+`__len__(self)`|对序列对象使用内建的len()函数的时候调用
+
+### 列表综合
+
+[使用列表综合](code/list_comprehension.py 'list_comprehension.py')
+
+```python
+new_list = [operate(i) for i in raw_list if test(i)]  # 对于 raw_list 中每一个元素 i, 如果 test(i) 为真, 则将 operate(i) 所得结果添加到新的列表中
+```
+
+### 在函数中接受元组和列表
+
+有一种特殊的方法, 使用 `*` 和 `**` 前缀 用在需要获取可变数量的参数的时候
+
+比如
+
+```python
+def powersum(power, *args):
+```
+
+上面示例中, 所有多余的函数参数都会作为一个元组存储在 args 中, 如果使用的是 `**` 前缀, 多余的参数则会被认为是一个字典的键/值对
+
+### lambda 形式
+
+[使用 lambda 形式](code/lambda.py 'lambda.py')
+
+```python
+lambda param: statement
+```
+
+lambda 需要一个参数, 后面仅跟 **单个表达式** 作为函数体, 只能用表达式(函数都不可以)
+
+### exec 和 eval 语句
+
+exec 语句用来 执行存储在字符串或文件中的 Python 语句
+
+```python
+>>> exec 'print "Hello World"'
+Hello World
+```
+
+eval 语句用来计算存储在字符串中的有效 Python 表达式
+
+```python
+>>> eval('2*3')
+6
+```
+
+### assert 语句
+
+assert语句用来声明某个条件是真的。
+
+eg. 如果你非常确信某个你使用的列表中至少有一个元素，而你想要检验这一点，并且在它非真的时候引发一个错误，那么assert语句是应用在这种情形下的理想语句。
+
+当assert语句失败的时候，会引发一个 **AssertionError**
+
+### repr 函数
+
+用来取得对象的规范字符串表示, **反引号**(也称**转换符**)可以完成相同的功能
+> 注: 大多数时候有 eval(repr(object)) == object
+
+可以通过定义类的 __repr__ 方法来控制对象在被 repr 函数调用的时候返回的内容
+
+## 附录A 自由/开放源码软件(FLOSS)
+
+## 附录B 关于本书
+
+### 术语表
+
+English|中文
+:-:|-
+argument|实参
+attribute|属性
+base class|基本类
+block|块
+character|字符
+class|类
+comment|注释
+complex number|复数
+derived class|导出类
+dictionary|字典
+escape sequence|转义符
+exception|异常
+expression|表达式
+field|域
+float|浮点数
+function|函数
+identifier|标识符
+indentation|缩进
+indexing|索引
+instance|实例
+integer|整数
+list|列表
+list comprehension|列表综合
+literal constant|字面意义上的常量
+logical line|逻辑行
+long integer|长整数
+method|方法
+module|模块
+namespace|名称空间
+object|对象
+operand|操作数
+operator|运算符
+parameter|形参
+pickle|储存器
+physical line|物理行
+sequence|序列
+shebang line|组织行
+slicing|切片
+statement|语句
+string|字符串
+subclass|子类
+superclass|超类
+tuple|元组
+type|类型
+variable|变量

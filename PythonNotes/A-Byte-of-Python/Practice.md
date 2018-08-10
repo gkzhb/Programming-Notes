@@ -1,6 +1,7 @@
 # Python 实践
 
 [TOC]
+
 从[第10章](https://woodpecker.org.cn/abyteofpython_cn/chinese/ch10.html)开始
 
 ## 解决问题——编写一个 Python 脚本
