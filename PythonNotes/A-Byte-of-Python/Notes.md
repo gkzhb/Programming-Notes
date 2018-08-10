@@ -3,6 +3,19 @@
 [TOC]
 来自 [GitHub PythonShare](https://github.com/Yixiaohan/codeparkshare) 中的 [简明 Python 教程](https://woodpecker.org.cn/abyteofpython_cn/chinese/)
 
+## Python 自带帮助文档
+
+```terminal
+$ pydoc -p 8000  # python3 对应 pydoc3
+pydoc server ready at http://localhost:8000/
+```
+
+pydoc 与 pydoc3 位于 /usr/bin 中，分别链接到 pydoc2.7 和 pydoc3.6。如若需要可以自行更改链接使 pydoc 链接到 pydoc3.6
+
+[Python 官方首页](https://www.python.org/)
+[Python wiki](https://wiki.python.org/moin/)
+[Python 标准文档](https://docs.python.org/3/)
+
 ## HelloWorld 实例
 
 ```python
@@ -381,21 +394,216 @@ del 语句用来 **删除** 一个变量/名称
 
 ## 数据结构
 
-### 列表
+### 列表 list
 
 list 是处理一组有序项目的数据结构，是 **可变的** 数据结构，而字符串是不可变的
-列表中的项目应该包括在方括号中，用逗号隔开，且项目数据类型可以不同
+列表中的项目应该包括在 **方括号** 中，用逗号隔开，且项目数据类型可以不同
 [使用列表](code/using_list.py 'using_list.py')
 用到的方法有 `len(list)` `list.append(item)` `list.sort()` `list[index]`
 
 * 技巧：在 print 语句结尾使用一个 **逗号** 来消除每个 print 语句自动打印的换行符
 
-### 元组
+### 元组 tuple
 
-tuple 和列表相类似，但是 **不可变的**，通过圆括号中用逗号分割项目
+tuple 和列表相类似，但是 **不可变的**，通过 **圆括号** 中用逗号分割项目
 [使用元组](code/using_tuple.py 'using_tuple.py')
 元组也可以通过 len 函数获取长度，说明它也是一个 **序列**
 
 **含有0个或1个项目的元组**：空的元组由一对空的圆括号组成，只有一个元素的元组需要在项目后跟一个 逗号 以区分元组和表达式中带圆括号的对象
 
 print 语句可以使用跟着%符号的项目元组的字符串，这些字符串具备定制的功能，让输出满足某种特定的格式，元组必须按照相同的顺序来对应这些定制。
+
+### 字典 dict
+
+类似于C++中的Map，有 **键** 和 **值**，键必须是唯一的，而且只能用不可变的对象来作为字典的键
+键值对标记方式：
+
+```python
+d = {key1 : value1, key2 : value2 }
+```
+
+注意字典中的键值对是没有顺序的，字典是 dict 类的实例/对象
+[使用字典](code/using_dict.py 'using_dict.py')
+添加 key/value pair：`dict[key] = value`
+删除：`del dict[key]`
+
+`dict.items()` 返回一个元组的列表，其中每个元组包含一对项目
+使用 in 操作符或使用 dict.has_key(key) 方法检验一个键值对是否存在
+**关键字参数**与字典有联系或相通的地方
+
+### 序列
+
+**列表、元组和字符串都是序列**，序列的两个主要特点是**索引**操作符和**切片**操作符
+[使用序列](code/seq.py 'seq.py')
+索引为负数时从序列尾开始计算位置，如-1表示最后一个元素
+切片操作符：`seq[index1:index2]` 其中 index1/2 是可选的，不指定默认表示从开头开始/到结尾结束
+
+### 参考
+
+变量仅仅 参考 创建的对象,变量名指向存储对象的内存.这被称作名称到对象的绑定
+[对象与参考](code/reference.py 'reference.py')
+> 注意：赋值一个序列或者其他复杂的对象，应该使用切片操作符来取得拷贝；单纯用等号连接只表示引用同一个对象
+
+### 字符串 str
+
+[字符串的方法](code/str_methods.py 'str_methods.py')
+`str.startswith(str)`
+`str.find(str)` 返回-1表示找不到子字符串
+`str.join(list)` 用 str 连接 list 中项目返回生成的字符串
+
+## 面向对象的编程
+
+### 简介
+
+**类**创建一个新类型，而**对象**这个类的 *实例* 
+属于一个对象或类的变量被称为**域**
+属于类的函数称为类的**方法**
+域和方法合称为类的**属性**
+域有两种类型——属于每个实例/类的对象或属于类本身。它们分别被称为**实例变量**和**类变量**
+类使用 `class` 关键字创建
+
+### self
+
+类的方法必须有额外的第一个参数名称，一般使用 self 这个名称，但是在调用方法时不为这个参数赋值，Python 自动提供Object 值
+
+### 类
+
+[创建一个类](code/simplestclass.py 'simplestclass.py')
+[使用对象的方法](code/method.py 'method.py')
+
+### `__init__` 方法 `__del__` 方法
+
+[使用 `__init__` 方法](code/class_init.py 'class_init.py')
+`__init__` 方法类似于C++中的 constructor
+
+### 类与对象的方法
+
+两种类型的域：类的变量和对象的变量
+[使用类与对象的变量](code/objvar.py 'objvar.py')
+只能使用 self 变量来参考同一个对象的变量和方法，这称作 **属性参考**
+用类名参考的变量是类的变量
+
+`__del__` 方法在对象消逝的时候被调用，类似于 destructor 的概念
+
+> 注：Python 中所有的类成员都是 公共 的，所有的方法都是有效的
+只有一个例外：以双下划线前缀的数据成员名称会被 Python 的名称管理体系作为私有变量
+惯例：以单下划线前缀 标注只想在类或对象中使用的变量
+
+### 继承
+
+重用
+多态现象：一个子类型在任何需要父类型的场合可以被替换成父类型，即对象可以被视作是父类的实例
+**基本类** 或 **超类** 与 **导出类** 或 **子类**
+[使用继承](code/inherit.py 'inherit.py')
+
+```python
+class Base:
+	define1
+	def __init__(self)
+
+class Derived(Base):
+	define2
+	def __init__(self)
+		Base.__init__(self)
+		define3
+```
+
+Python 不会自动调用基本类的 constructor
+基本类是在类定义的时候，在元组之中指明的。
+如果在继承元组中列了一个以上的类，那么它就被称作 **多重继承** 。
+
+## 输入/输出
+
+### 文件
+
+file 类方法
+
+* read(file-name-str,mode-str)  # 'r' 读模式(默认模式), 'w' 写模式, 'a' 追加模式 ...
+* readline()  # 读取文件的一行,包括行末换行符,长度为0表示 EOF
+* write
+* close
+
+[使用文件](code/using_file.py 'using_file.py')
+
+### 储存器
+
+Python 提供一个可以在文件中储存任何 Python 对象的标准模块，称为 pickle。之后又可以完整地读取数据，这称为 **持久地** 储存对象
+另一个 cPickle 模块功能与 Pickle 模块完全相同，不过用C语言编写，快得多。把这两个模块都简称为 pickle 模块
+[储存与取储存](code/pickling.py 'pickling.py')
+
+```python
+import A as B  # 用 B 代替 模块名 A
+```
+
+cPickle
+
+* dump(object, file)  # dump the object to a file (**储存**)
+* load(file)  # read from the file, return the object (**取储存**)
+
+## 异常
+
+### 错误
+
+**错误处理器**: SyntaxError 被引发, 并且检测到的错误位置也将被打印出来
+[处理异常](code/try_except.py 'try_except.py')
+
+### try .. except 处理异常
+
+```python
+try:
+	state1
+except error1:
+except :
+```
+
+except 从句可以专门处理单一的错误或异常，或者一组包括在圆括号内的错误/异常。如果没有给出错误或异常的名称，它会处理 *所有的* 错误和异常
+
+如果某个错误或异常没有被处理，默认的Python处理器就会被调用。它会终止程序的运行，并且打印一个消息
+
+try..catch块可以关联上一个else从句。当没有异常发生的时候，else从句将被执行
+
+### 引发异常
+
+使用 `raise` 语句 引发异常, 要指明错误/异常的名称和伴随异常触发的异常对象
+错误和异常应该分别是一个 Error 或 Exception 类的直接或间接的导出类
+[引发异常](code/raising.py 'raising.py')
+
+### try .. finally
+
+无论异常发生与否, 都执行 finally 块
+若同时使用 except 从句和 finally 块, 需要把一个嵌入另外一个
+[使用finally](code/finally.py 'finally.py')
+
+## Python 标准库
+
+### sys 模块
+
+[使用 sys.argv](code/cat.py 'cat.py')
+sys|说明
+:-:|:-:
+sys.argv 列表|命令行参数
+sys.stdin|程序的标准输入
+sys.stdout|标准输出
+sys.stderr|标准错误流
+sys.exit()|退出正在运行的程序
+sys.version|提供安装的 Python 版本信息
+sys.version_info|元组类型
+
+cat: *concatenate*
+
+### os 模块
+
+包含普遍的操作系统功能, 与平台无关
+
+os模块|说明
+:-:|-
+name 字符串|指示正在使用的平台 Win-'nt' Linux/Unix-'posix'
+getcwd( )|返回当前 Python 脚本工作目录路径
+getenv( ) putenv( )|分别读取和设置环境变量
+listdir( )|返回指定目录下的所有文件和目录名
+remove( )|删除一个文件
+system( )|运行 shell 命令
+linesep 字符串|当前平台使用的行终止符 Win-'\r\n' Linux-'\n' Mac-'\r'
+path.split( )|返回一个路径的目录名和文件名 (元组)
+path.isfile( ) path.isdir( )|分别检验给出的路径是一个文件还是目录
+path.existe( )|检验给出的路径是真得存在
